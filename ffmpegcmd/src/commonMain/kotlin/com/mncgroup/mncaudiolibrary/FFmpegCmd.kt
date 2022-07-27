@@ -58,6 +58,15 @@ object FFmpegCmd {
     }
 
     /**
+     * Convert any audio file to OPUS
+     * @param inputPath source of file path audio
+     * @param outputPath output path of file result
+     */
+    fun convertAnyToOPUS(inputPath: String, outputPath: String): String {
+        return "-i $inputPath -acodec libopus \"$outputPath\""
+    }
+
+    /**
      * Convert any audio file to WAV
      * @param inputPath source of file path audio
      * @param outputPath output path of file result
