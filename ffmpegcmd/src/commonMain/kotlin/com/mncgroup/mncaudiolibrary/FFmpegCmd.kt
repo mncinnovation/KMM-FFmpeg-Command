@@ -72,7 +72,7 @@ object FFmpegCmd {
      * @param outputPath output path of file result
      */
     fun convertAnyToAAC(inputPath: String, outputPath: String): String {
-        return "-i $inputPath -acodec libfaac \"$outputPath\""
+        return "-i $inputPath -acodec aac \"$outputPath\""
     }
 
     /**
