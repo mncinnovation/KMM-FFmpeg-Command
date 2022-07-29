@@ -71,7 +71,7 @@ object FFmpegCmd {
      * @param inputPath source of file path audio
      * @param outputPath output path of file result
      */
-    fun convertAnyToWAV(inputPath : String, outputPath: String): String {
+    fun convertAnyToWAV(inputPath: String, outputPath: String): String {
         return "-i $inputPath -acodec pcm_u8 -ar 22050 \"$outputPath\""
     }
 
@@ -92,24 +92,24 @@ object FFmpegCmd {
      * @param end   format in second -> 0
      */
     fun trim(inputPath: String, outputPath: String, start: Int, end: Int): String {
-        return "-ss $start -i $inputPath \"$outputPath\" -t $end"
+        return "-i $inputPath -ss $start -t $end \"$outputPath\""
     }
 
     /**
      * Cut or trim audio based on start and duration in string format 00:00:00
      * @param inputPath source of file path audio
      * @param outputPath output path of file result
-     * @param start     format -> "00:01:00"
-     * @param duration  format -> "00:00:30"
+     * @param start format -> "00:01:00"
+     * @param end format -> "00:01:30"
      * @example Cut 30 seconds audio from 1:00 min. Start 1 min / end 1:30
      */
     fun trim(
         inputPath: String,
         outputPath: String,
         start: String,
-        duration: String
+        end: String
     ): String {
-        return "-ss $start -i $inputPath -o \"$outputPath\" -to $duration"
+        return "-i $inputPath -ss $start -to $end \"$outputPath\""
     }
 
     /**
@@ -118,7 +118,7 @@ object FFmpegCmd {
      * @param highpass highpass parameter set
      * @param lowpass lowpass parameter set
      */
-    fun removeNoise(inputPath: String, outputPath: String, highpass: Int, lowpass:Int): String {
+    fun removeNoise(inputPath: String, outputPath: String, highpass: Int, lowpass: Int): String {
         return "-i $inputPath -af \"highpass=f=$highpass, lowpass=f=$lowpass\" \"$outputPath\""
     }
 
