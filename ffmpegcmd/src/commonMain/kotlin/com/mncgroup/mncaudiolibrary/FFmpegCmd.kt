@@ -127,7 +127,7 @@ object FFmpegCmd {
      * @param outputPath output path of file result
      */
     fun removeSilence(inputPath: String, outputPath: String): String {
-        return "-i $inputPath -af silenceremove=1:0:-50dB -o \"$outputPath\""
+        return "-i $inputPath -af silenceremove=1:0:-50dB \"$outputPath\""
     }
 
     /**
@@ -135,7 +135,7 @@ object FFmpegCmd {
      * @param outputPath output path of file result
      */
     fun removeVocal(inputPath: String, outputPath: String): String {
-        return "-i $inputPath -af pan=\"stereo|c0=c0|c1=-1*c1\" -ac 1 -o \"$outputPath\""
+        return "-i $inputPath -af pan=\"stereo|c0=c0|c1=-1*c1\" -ac 1 \"$outputPath\""
     }
 
 
@@ -145,7 +145,7 @@ object FFmpegCmd {
      * @param outputFile output path of file result
      */
     fun robotEffect(inputPath: String, outputFile: String): String {
-        return "-i $inputPath -af asetrate=11100,atempo=4/3,atempo=1/2,atempo=3/4 -o \"$outputFile\""
+        return "-i $inputPath -filter_complex \"afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=0.75\" \"$outputFile\""
     }
 
     /**
@@ -155,10 +155,10 @@ object FFmpegCmd {
     fun echoEffect(inputPath: String, outputFile: String, echoOption: EchoOption): String {
         return when (echoOption) {
             EchoOption.MOUNTAINS -> {
-                "-i $inputPath -filter_complex \"aecho=0.8:0.9:500|1000:0.2|0.1\" -o \"$outputFile\""
+                "-i $inputPath -filter_complex \"aecho=0.8:0.9:500|1000:0.2|0.1\" \"$outputFile\""
             }
             else -> {
-                "-i $inputPath -filter_complex \"aecho=0.8:0.9:40|50|70:0.4|0.3|0.2\" -o \"$outputFile\""
+                "-i $inputPath -filter_complex \"aecho=0.8:0.9:40|50|70:0.4|0.3|0.2\" \"$outputFile\""
             }
         }
     }
@@ -184,7 +184,7 @@ object FFmpegCmd {
         outputPath: String
     ): String {
         val ext = outputPath.split(".").last()
-        return "-i $inputPath1 -i $inputPath2 -filter_complex concat=n=3:v=0:a=1 -c:a $ext -vn -o \"$outputPath\""
+        return "-i $inputPath1 -i $inputPath2 -filter_complex concat=n=3:v=0:a=1 -c:a $ext -vn \"$outputPath\""
     }
 }
 
