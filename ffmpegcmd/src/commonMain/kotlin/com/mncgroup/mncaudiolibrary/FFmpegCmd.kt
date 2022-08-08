@@ -119,7 +119,7 @@ object FFmpegCmd {
      * @param lowpass lowpass parameter set
      */
     fun removeNoise(inputPath: String, outputPath: String, highpass: Int, lowpass: Int): String {
-        return "-i $inputPath -af \"highpass=f=$highpass, lowpass=f=$lowpass\" \"$outputPath\""
+        return "-i $inputPath -af \"highpass=f=$highpass, lowpass=f=$lowpass, volume=4\" \"$outputPath\""
     }
 
     /**
