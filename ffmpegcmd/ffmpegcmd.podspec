@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'ffmpegcmd'
-    spec.version                  = '1.0'
+    spec.version                  = '1.0.1'
     spec.homepage                 = 'innoplayer.co'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''

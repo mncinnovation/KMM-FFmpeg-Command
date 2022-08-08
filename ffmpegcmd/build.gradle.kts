@@ -2,9 +2,11 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("maven-publish")
 }
 
-version = "1.0"
+group = "com.github.mncinnovation"
+version = "1.0.1"
 
 kotlin {
     android()
