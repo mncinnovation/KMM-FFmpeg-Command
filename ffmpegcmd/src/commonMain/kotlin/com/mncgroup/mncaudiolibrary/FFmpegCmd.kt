@@ -152,6 +152,22 @@ object FFmpegCmd {
      * @param inputPath source of file path audio
      * @param outputFile output path of file result
      */
+    fun chipmunkEffect(inputPath: String, outputFile: String): String {
+        return "-i $inputPath -af \"atempo=3/4,asetrate=44100*4/3\" \"$outputFile\""
+    }
+
+    /**
+     * @param inputPath source of file path audio
+     * @param outputFile output path of file result
+     */
+    fun shiverEffect(inputPath: String, outputFile: String): String {
+        return "-i $inputPath -filter_complex \"vibrato=f=12\" \"$outputFile\""
+    }
+
+    /**
+     * @param inputPath source of file path audio
+     * @param outputFile output path of file result
+     */
     fun echoEffect(inputPath: String, outputFile: String, echoOption: EchoOption): String {
         return when (echoOption) {
             EchoOption.MOUNTAINS -> {
