@@ -151,9 +151,10 @@ object FFmpegCmd {
     /**
      * @param inputPath source of file path audio
      * @param outputFile output path of file result
+     * @param sampleRate sample rate of audio file
      */
-    fun chipmunkEffect(inputPath: String, outputFile: String): String {
-        return "-i $inputPath -af \"atempo=3/4,asetrate=44100*4/3\" \"$outputFile\""
+    fun chipmunkEffect(inputPath: String, outputFile: String, sampleRate : String): String {
+        return "-i $inputPath -af \"atempo=3/4,asetrate=$sampleRate*4/3\" \"$outputFile\""
     }
 
     /**
